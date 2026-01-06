@@ -1225,18 +1225,22 @@ body {
 /* ANIMASI ENTRANCE (Fade & Slide) */
 /* ────────────────────────────────────────── */
 
+/* ────────────────────────────────────────── */
+/* ANIMASI ENTRANCE — VERSI LAMA (LEBIH HALUS) */
+/* ────────────────────────────────────────── */
+
 .fade-in,
 .slide-up,
 .slide-left,
 .slide-right {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.slide-left { transform: translateX(-30px); }
-.slide-right { transform: translateX(30px); }
+.slide-left { transform: translateX(-40px); }
+.slide-right { transform: translateX(40px); }
 
 .fade-in.visible,
 .slide-up.visible,
@@ -1245,6 +1249,16 @@ body {
   opacity: 1;
   transform: none;
 }
+
+/* Delay stagger yang lebih halus */
+.stagger-item:nth-child(1) { transition-delay: 0.1s; }
+.stagger-item:nth-child(2) { transition-delay: 0.2s; }
+.stagger-item:nth-child(3) { transition-delay: 0.3s; }
+.stagger-item:nth-child(4) { transition-delay: 0.4s; }
+.stagger-item:nth-child(5) { transition-delay: 0.5s; }
+.stagger-item:nth-child(6) { transition-delay: 0.6s; }
+.stagger-item:nth-child(7) { transition-delay: 0.7s; }
+.stagger-item:nth-child(8) { transition-delay: 0.8s; }
 
 /* ────────────────────────────────────────── */
 /* CART PANEL: Kontrol Jumlah (+ / -) */
@@ -1421,14 +1435,6 @@ body {
   }
 }
 /* ────────── End of Tambahan ─────────────── */
-
-/* Delay bertingkat untuk grid */
-.stagger-item:nth-child(1) { transition-delay: 0.1s; }
-.stagger-item:nth-child(2) { transition-delay: 0.2s; }
-.stagger-item:nth-child(3) { transition-delay: 0.3s; }
-.stagger-item:nth-child(4) { transition-delay: 0.4s; }
-.stagger-item:nth-child(5) { transition-delay: 0.5s; }
-.stagger-item:nth-child(6) { transition-delay: 0.6s; }
 
 /* ────────────────────────────────────────── */
 /* MODAL INFO SECTION — JARAK & STYLING */
