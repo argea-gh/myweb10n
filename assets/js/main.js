@@ -90,7 +90,7 @@ function renderProducts(category = 'all') {
   });
 
   // ✅ PANGGIL ANIMASI SETELAH RENDER SELESAI
-  setTimeout(animateElements, 100); // delay kecil untuk DOM update
+  setTimeout(animateElements, 50); // delay kecil untuk DOM update
 
   // Event: Klik gambar → modal
   document.querySelectorAll('.product-card img').forEach(img => {
