@@ -414,41 +414,46 @@ scrollToTopBtn.addEventListener('click', (e) => {
 });
 
 // ──────────────────────────────────────────
-// ANIMASI ENTRANCE — LANGSUNG JALAN SAAT SIAP
+// ANIMASI VERSI LAMA — HALUS, STAGGER, TANPA BLANK
 // ──────────────────────────────────────────
 
-function animateElements() {
-  const elements = document.querySelectorAll('.fade-in, .slide-up, .slide-left, .slide-right');
+function animateOnReady() {
+  const elements = document.querySelectorAll(
+    '.fade-in, .slide-up, .slide-left, .slide-right'
+  );
   
-  elements.forEach(el => {
+  elements.forEach((el, index) => {
     if (el.classList.contains('visible')) return;
     
-    // Cek: apakah elemen sudah di viewport?
+    // Cek apakah elemen sudah di/near viewport
     const rect = el.getBoundingClientRect();
-    const inView = (
-      rect.top <= window.innerHeight * 1.2 && 
-      rect.bottom >= -rect.height * 0.2
-    );
+    const isNear = rect.top < window.innerHeight + 200 && rect.bottom > -100;
     
-    if (inView) {
-      el.classList.add('visible');
+    if (isNear) {
+      // Delay stagger: 0.1s per item
+      const delay = Math.min(index * 0.1, 0.8);
+      setTimeout(() => {
+        if (!el.classList.contains('visible')) {
+          el.classList.add('visible');
+        }
+      }, delay * 1000);
     }
   });
 }
 
-// Jalankan sesegera mungkin
-document.addEventListener('DOMContentLoaded', animateElements);
-window.addEventListener('load', animateElements);
+// Jalankan saat DOM & aset siap
+document.addEventListener('DOMContentLoaded', animateOnReady);
+window.addEventListener('load', animateOnReady);
 
-// Juga pantau saat scroll (untuk elemen di bawah)
+// Pantau saat scroll (untuk elemen di bawah)
 let scrollTimer;
 window.addEventListener('scroll', () => {
   clearTimeout(scrollTimer);
-  scrollTimer = setTimeout(animateElements, 100);
+  scrollTimer = setTimeout(animateOnReady, 150);
 });
 
-// Fallback: jalankan semua setelah 1 detik (jika IntersectionObserver gagal)
-setTimeout(animateElements, 1000);
+// Fallback aman: jalankan semua setelah 1.2 detik
+setTimeout(animateOnReady, 1200);
 
 // ──────────────────────────────────────────
 // COMMON INIT (jalankan di semua halaman)
